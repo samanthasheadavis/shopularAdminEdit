@@ -2,8 +2,7 @@
     "use strict";
 
     angular.module('products', []).controller("ProductsController", function() {
-        this.allProducts = [
-          {
+        this.allProducts = [{
             "id": 2957,
             "name": "widget",
             "price": 32,
@@ -87,18 +86,48 @@
             "quantity": 10,
             "color": "black",
             "discount": 12
-        }
-      ];
+        }];
 
-      this.calculateTax = function(price, discount) {
-        return '$' + (price*1.0575-discount).toFixed(2);
-      };
 
-      this.onSale = function(discount) {
-        if (discount>0) {
-          return true;
-        }
-      };
+//         this.updatePrice = function() {
+//           this.updatePrice.salePrice = 0;
+//           for (var item in this.allProducts) {
+//             salePrice = (this.allProducts[item].price)*1.0575 - this.allProducts[item].discount;
+// console.log(this.updatePrice.salePrice);
+//           }
+//
+//           return this.updatePrice.salePrice;
+//         };
+
+        this.orderByField = 'price';
+        this.reverseSort = true;
+        this.calculateTax = function(price, discount) {
+            var newPrice = price * 1.0575 - discount;
+            return newPrice;
+        };
+
+        this.onSale = function(discount) {
+            if (discount > 0) {
+                return true;
+            }
+        };
+
+        this.minLength = 2;
+
+        this.addItems = function() {
+            this.allProducts.push(this.newItem);
+        };
+
+        this.newItem = {
+            "id": '',
+            "name": '',
+            "price": '',
+            "quantity": '',
+            "color": '',
+            "discount": ''
+        };
+
+        this.updatePrice(3);
 
     });
 
