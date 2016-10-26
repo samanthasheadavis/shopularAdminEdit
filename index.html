@@ -53,14 +53,14 @@
         <table>
           <tr>
             <th ng-click="orderByField='name'; reverseSort = !reverseSort">Name</th>
-            <th ng-click="orderByField='price'; reverseSort = !reverseSort">Price</th>
+            <th ng-click="orderByField='totalPrice'; reverseSort = !reverseSort">Price</th>
             <th ng-click="orderByField='quantity'; reverseSort = !reverseSort">Quantity</th>
             <th ng-click="orderByField='color'; reverseSort = !reverseSort">Color</th>
             <th>Sale</th>
           </tr>
             <tr ng-repeat="item in products.allProducts|orderBy:orderByField:reverseSort">
                 <td>{{item.name}}</td>
-                <td>{{item.price | currency}}</td>
+                <td>{{item.totalPrice | currency}}</td>
                 <td>{{item.quantity}}</td>
                 <td>{{item.color}}</td>
                 <td><img ng-show='products.onSale(item.discount)' src='http://www.freeiconspng.com/uploads/sales-icon-9.png'></td>

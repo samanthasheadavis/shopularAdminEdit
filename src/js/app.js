@@ -1,7 +1,11 @@
 (function($) {
     "use strict";
 
-    angular.module('products', []).controller("ProductsController", function() {
+    angular.module('products', []).controller("ProductsController", function($scope) {
+
+      $scope.orderByField = 'totalPrice';
+      $scope.reverseSort = false;
+
         this.allProducts = [{
             "id": 2957,
             "name": "widget",
@@ -88,23 +92,14 @@
             "discount": 12
         }];
 
-
-//         this.updatePrice = function() {
-//           this.updatePrice.salePrice = 0;
-//           for (var item in this.allProducts) {
-//             salePrice = (this.allProducts[item].price)*1.0575 - this.allProducts[item].discount;
-// console.log(this.updatePrice.salePrice);
-//           }
-//
-//           return this.updatePrice.salePrice;
-//         };
-
-        this.orderByField = 'price';
-        this.reverseSort = true;
-        this.calculateTax = function(price, discount) {
-            var newPrice = price * 1.0575 - discount;
-            return newPrice;
+        this.updatePrice = function(products) {
+            for (var count = 0; count<products.length; count++) {
+              var newPrice = ((products[count].price - products[count].discount) * 1.0575);
+              products[count].totalPrice = newPrice;
+            }
         };
+        this.updatePrice(this.allProducts);
+
 
         this.onSale = function(discount) {
             if (discount > 0) {
@@ -127,7 +122,6 @@
             "discount": ''
         };
 
-        this.updatePrice(3);
 
     });
 
