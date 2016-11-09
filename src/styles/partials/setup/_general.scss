@@ -2,7 +2,7 @@ $aqua: rgba(#25B7C0, .5);
 
 body {
   background: url('../../assets/symphony.png');
-
+  font-family: raleway;
 }
 h1 {
   margin-top: 15px;
@@ -19,7 +19,6 @@ img {
 .productsContainer {
     margin: 0 auto;
     width: 60%;
-    font-family: raleway;
 }
 
 table {
@@ -64,4 +63,9 @@ table {
 
 .invalid {
   border: 2px solid red;
+}
+
+label, input {
+  float: left;
+  display: block;
 }
